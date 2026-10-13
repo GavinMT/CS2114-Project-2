@@ -1,10 +1,12 @@
+package com.group58.slideshowplayer;
+
 /**
  * A generic chain of linked nodes. Use it as the storage inside your
  * own classes, and extend or modify it as your project needs.
  *
  * This class owns storage only: nodes, the head reference, and the
  * count. It contains no application logic. A class that needs a
- * collection should hold a LinkedChain field and call its methods.
+ * collection should hold a com.group58.slideshowplayer.LinkedChain field and call its methods.
  *
  * add() places the new entry at the FRONT of the chain, so entries added
  * with add() come back from toArray() in reverse order of insertion.

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cs2114</groupId>
-    <artifactId>slideshow-player</artifactId>
+    <artifactId>com.group58.slideshowplayer.slideshow-player</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -14,7 +14,7 @@
         <javafx.version>25</javafx.version>
         <junit.version>5.11.4</junit.version>
         <!-- Set this to your JavaFX Application class once it exists -->
-        <main.class>slideshow.SlideshowApp</main.class>
+        <main.class>com.group58.slideshowplayer.slideshow.SlideshowApp</main.class>
     </properties>
 
     <dependencies>
