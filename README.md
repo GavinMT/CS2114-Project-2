@@ -1,2 +1,10 @@
 # CS2114-Project-2
-Desc
+# Compile instructions:
+
+#  Reflection:
+
+# Next steps:
+
+# Attribution:
+
+# GenAI Notice:
