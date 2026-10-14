@@ -6,15 +6,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
 
-import com.group58.slideshowplayer.media.SlideshowMedia;
+import com.group58.slideshowplayer.media.Media;
 
-public class MediaPlaylist {
+public class Playlist {
     private final String name;
     private final Path directory;
-    private final LinkedChain<SlideshowMedia> media;
+    private final LinkedChain<Media> media;
     private int currentIndex;
 
-    public MediaPlaylist(String name) {
+    public Playlist(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Playlist name must not be empty");
         }
@@ -44,14 +44,14 @@ public class MediaPlaylist {
         return true;
     }
 
-    public void add(SlideshowMedia item) {
+    public void add(Media item) {
         media.addToEnd(item);
         if (currentIndex == -1) {
             currentIndex = 0;
         }
     }
 
-    public boolean remove(SlideshowMedia item) {
+    public boolean remove(Media item) {
         int index = indexOf(item);
         if (index == -1) {
             return false;
@@ -70,15 +70,15 @@ public class MediaPlaylist {
         currentIndex = -1;
     }
 
-    public SlideshowMedia get(int index) {
+    public Media get(int index) {
         return media.get(index);
     }
 
-    public int indexOf(SlideshowMedia item) {
+    public int indexOf(Media item) {
         if (item == null) {
             return -1;
         }
-        SlideshowMedia[] items = toArray();
+        Media[] items = toArray();
         for (int i = 0; i < items.length; i++) {
             if (item.equals(items[i])) {
                 return i;
@@ -87,7 +87,7 @@ public class MediaPlaylist {
         return -1;
     }
 
-    public boolean contains(SlideshowMedia item) {
+    public boolean contains(Media item) {
         return media.contains(item);
     }
 
@@ -111,14 +111,14 @@ public class MediaPlaylist {
         currentIndex = index;
     }
 
-    public SlideshowMedia getCurrent() {
+    public Media getCurrent() {
         if (media.isEmpty()) {
             return null;
         }
         return media.get(currentIndex);
     }
 
-    public SlideshowMedia next() {
+    public Media next() {
         if (media.isEmpty()) {
             return null;
         }
@@ -126,7 +126,7 @@ public class MediaPlaylist {
         return media.get(currentIndex);
     }
 
-    public SlideshowMedia previous() {
+    public Media previous() {
         if (media.isEmpty()) {
             return null;
         }
@@ -142,17 +142,17 @@ public class MediaPlaylist {
         return !media.isEmpty() && currentIndex > 0;
     }
 
-    public void sort(Comparator<? super SlideshowMedia> comparator) {
+    public void sort(Comparator<? super Media> comparator) {
         if (comparator == null) {
             throw new IllegalArgumentException("Comparator must not be null");
         }
         if (media.size() < 2) {
             return;
         }
-        SlideshowMedia current = getCurrent();
-        SlideshowMedia[] items = toArray();
+        Media current = getCurrent();
+        Media[] items = toArray();
         for (int i = 1; i < items.length; i++) {
-            SlideshowMedia key = items[i];
+            Media key = items[i];
             int j = i - 1;
             while (j >= 0 && comparator.compare(items[j], key) > 0) {
                 items[j + 1] = items[j];
@@ -172,8 +172,8 @@ public class MediaPlaylist {
         }
     }
 
-    public SlideshowMedia[] toArray() {
-        return media.toArray(new SlideshowMedia[media.size()]);
+    public Media[] toArray() {
+        return media.toArray(new Media[media.size()]);
     }
 
     @Override

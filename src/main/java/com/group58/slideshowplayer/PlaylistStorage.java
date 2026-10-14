@@ -11,10 +11,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Stream;
 
-import com.group58.slideshowplayer.media.GifMedia;
-import com.group58.slideshowplayer.media.ImageMedia;
-import com.group58.slideshowplayer.media.SlideshowMedia;
-import com.group58.slideshowplayer.media.VideoMedia;
+import com.group58.slideshowplayer.media.Gif;
+import com.group58.slideshowplayer.media.Image;
+import com.group58.slideshowplayer.media.Media;
+import com.group58.slideshowplayer.media.Video;
 
 import javafx.util.Duration;
 
@@ -49,13 +49,13 @@ public class PlaylistStorage {
         return loaded;
     }
 
-    public MediaPlaylist createPlaylist(User user, String name) throws IOException {
+    public Playlist createPlaylist(User user, String name) throws IOException {
         if (!isValidPlaylistName(name)) {
             throw new IllegalArgumentException(
                 "Playlist names can't be empty, start with a dot, "
                 + "or contain / \\ : * ? \" < > |");
         }
-        MediaPlaylist playlist = user.createPlaylist(name);
+        Playlist playlist = user.createPlaylist(name);
         playlist.createDirectory();
         Path manifest = playlist.getDirectory().resolve(MANIFEST);
         if (!Files.exists(manifest)) {
@@ -64,7 +64,7 @@ public class PlaylistStorage {
         return playlist;
     }
 
-    public SlideshowMedia importFile(MediaPlaylist playlist, File source, Duration duration)
+    public Media importFile(Playlist playlist, File source, Duration duration)
         throws IOException {
         if (!isSupported(source.getName())) {
             throw new IllegalArgumentException("unsupported file type");
@@ -73,7 +73,7 @@ public class PlaylistStorage {
         Path target = uniqueTarget(playlist.getDirectory(), source.getName());
         Files.copy(source.toPath(), target);
         String date = LocalDate.now().toString();
-        SlideshowMedia media = createMedia(target.toFile(), duration, date);
+        Media media = createMedia(target.toFile(), duration, date);
         String line = duration.toSeconds() + "\t" + date + "\t"
             + target.getFileName() + System.lineSeparator();
         Files.writeString(playlist.getDirectory().resolve(MANIFEST), line,
@@ -129,17 +129,17 @@ public class PlaylistStorage {
         return true;
     }
 
-    private SlideshowMedia createMedia(File file, Duration duration, String date) {
+    private Media createMedia(File file, Duration duration, String date) {
         String name = file.getName();
         String extension = extensionOf(name);
         if (extension.equals("gif")) {
-            return new GifMedia(name, date, file, duration);
+            return new Gif(name, date, file, duration);
         }
         if (matches(extension, IMAGE_EXTENSIONS)) {
-            return new ImageMedia(name, date, file, duration);
+            return new Image(name, date, file, duration);
         }
         if (matches(extension, VIDEO_EXTENSIONS)) {
-            return new VideoMedia(name, date, file);
+            return new Video(name, date, file);
         }
         throw new IllegalArgumentException("unsupported file type");
     }

@@ -1,11 +1,11 @@
 package com.group58.slideshowplayer;
 
-import com.group58.slideshowplayer.media.SlideshowMedia;
+import com.group58.slideshowplayer.media.Media;
 
 public class User {
     private final String name;
-    private final LinkedChain<MediaPlaylist> playlists;
-    private MediaPlaylist selectedPlaylist;
+    private final LinkedChain<Playlist> playlists;
+    private Playlist selectedPlaylist;
 
     public User(String name) {
         if (name == null || name.isBlank()) {
@@ -20,7 +20,7 @@ public class User {
         return name;
     }
 
-    public MediaPlaylist createPlaylist(String playlistName) {
+    public Playlist createPlaylist(String playlistName) {
         if (playlistName == null || playlistName.isBlank()) {
             throw new IllegalArgumentException("Playlist name must not be empty");
         }
@@ -29,7 +29,7 @@ public class User {
             throw new IllegalArgumentException(
                 "A playlist named \"" + trimmed + "\" already exists");
         }
-        MediaPlaylist playlist = new MediaPlaylist(trimmed);
+        Playlist playlist = new Playlist(trimmed);
         playlists.addToEnd(playlist);
         if (selectedPlaylist == null) {
             selectedPlaylist = playlist;
@@ -37,12 +37,12 @@ public class User {
         return playlist;
     }
 
-    public MediaPlaylist getPlaylist(String playlistName) {
+    public Playlist getPlaylist(String playlistName) {
         if (playlistName == null) {
             return null;
         }
         String trimmed = playlistName.trim();
-        for (MediaPlaylist playlist : getPlaylists()) {
+        for (Playlist playlist : getPlaylists()) {
             if (playlist.getName().equalsIgnoreCase(trimmed)) {
                 return playlist;
             }
@@ -54,19 +54,19 @@ public class User {
         return getPlaylist(playlistName) != null;
     }
 
-    public MediaPlaylist[] getPlaylists() {
-        return playlists.toArray(new MediaPlaylist[playlists.size()]);
+    public Playlist[] getPlaylists() {
+        return playlists.toArray(new Playlist[playlists.size()]);
     }
 
     public int getPlaylistCount() {
         return playlists.size();
     }
 
-    public void addMedia(String playlistName, SlideshowMedia media) {
+    public void addMedia(String playlistName, Media media) {
         if (media == null) {
             throw new IllegalArgumentException("Media must not be null");
         }
-        MediaPlaylist playlist = getPlaylist(playlistName);
+        Playlist playlist = getPlaylist(playlistName);
         if (playlist == null) {
             throw new IllegalArgumentException(
                 "No playlist named \"" + playlistName + "\"");
@@ -74,7 +74,7 @@ public class User {
         playlist.add(media);
     }
 
-    public void addMediaToSelected(SlideshowMedia media) {
+    public void addMediaToSelected(Media media) {
         if (selectedPlaylist == null) {
             throw new IllegalStateException("No playlist is selected");
         }
@@ -82,7 +82,7 @@ public class User {
     }
 
     public void selectPlaylist(String playlistName) {
-        MediaPlaylist playlist = getPlaylist(playlistName);
+        Playlist playlist = getPlaylist(playlistName);
         if (playlist == null) {
             throw new IllegalArgumentException(
                 "No playlist named \"" + playlistName + "\"");
@@ -90,7 +90,7 @@ public class User {
         selectedPlaylist = playlist;
     }
 
-    public MediaPlaylist getSelectedPlaylist() {
+    public Playlist getSelectedPlaylist() {
         return selectedPlaylist;
     }
 

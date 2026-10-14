@@ -4,10 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import com.group58.slideshowplayer.MediaPlaylist;
+import com.group58.slideshowplayer.Playlist;
 import com.group58.slideshowplayer.PlaylistStorage;
 import com.group58.slideshowplayer.User;
-import com.group58.slideshowplayer.media.SlideshowMedia;
+import com.group58.slideshowplayer.media.Media;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -33,8 +33,8 @@ public class SlideshowScenes {
     private final PlaylistStorage storage;
     private final Scene scene;
     private final BorderPane homeRoot;
-    private final ListView<MediaPlaylist> playlistList;
-    private final ListView<SlideshowMedia> mediaList;
+    private final ListView<Playlist> playlistList;
+    private final ListView<Media> mediaList;
     private final Label playlistTitle;
     private final TextField newPlaylistField;
     private final Spinner<Integer> secondsSpinner;
@@ -50,7 +50,7 @@ public class SlideshowScenes {
         playlistList = new ListView<>();
         playlistList.setCellFactory(list -> new ListCell<>() {
             @Override
-            protected void updateItem(MediaPlaylist item, boolean empty) {
+            protected void updateItem(Playlist item, boolean empty) {
                 super.updateItem(item, empty);
                 setText(empty || item == null
                     ? null
@@ -83,7 +83,7 @@ public class SlideshowScenes {
         mediaList = new ListView<>();
         mediaList.setCellFactory(list -> new ListCell<>() {
             @Override
-            protected void updateItem(SlideshowMedia item, boolean empty) {
+            protected void updateItem(Media item, boolean empty) {
                 super.updateItem(item, empty);
                 setText(empty || item == null
                     ? null
@@ -130,7 +130,7 @@ public class SlideshowScenes {
     }
 
     public void showSlideshow() {
-        MediaPlaylist playlist = playlistList.getSelectionModel().getSelectedItem();
+        Playlist playlist = playlistList.getSelectionModel().getSelectedItem();
         if (playlist == null || playlist.isEmpty()) {
             return;
         }
@@ -149,7 +149,7 @@ public class SlideshowScenes {
 
     private void createPlaylist() {
         String name = newPlaylistField.getText().trim();
-        MediaPlaylist playlist;
+        Playlist playlist;
         try {
             playlist = storage.createPlaylist(user, name);
         }
@@ -169,7 +169,7 @@ public class SlideshowScenes {
     }
 
     private void uploadMedia() {
-        MediaPlaylist playlist = playlistList.getSelectionModel().getSelectedItem();
+        Playlist playlist = playlistList.getSelectionModel().getSelectedItem();
         if (playlist == null) {
             return;
         }
@@ -202,7 +202,7 @@ public class SlideshowScenes {
     }
 
     private void refreshPlaylists() {
-        MediaPlaylist selected = user.getSelectedPlaylist();
+        Playlist selected = user.getSelectedPlaylist();
         playlistList.getItems().setAll(user.getPlaylists());
         if (selected != null) {
             playlistList.getSelectionModel().select(selected);
@@ -211,7 +211,7 @@ public class SlideshowScenes {
     }
 
     private void refreshMedia() {
-        MediaPlaylist playlist = playlistList.getSelectionModel().getSelectedItem();
+        Playlist playlist = playlistList.getSelectionModel().getSelectedItem();
         if (playlist == null) {
             playlistTitle.setText("Create or select a playlist");
             mediaList.getItems().clear();

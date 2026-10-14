@@ -4,9 +4,9 @@ import java.io.File;
 
 import javafx.util.Duration;
 
-public class GifMedia extends ImageMedia {
+public class Gif extends Image {
 
-    public GifMedia(String name, String date, File file, Duration duration) {
+    public Gif(String name, String date, File file, Duration duration) {
         super(name, date, file, duration);
         if (!file.getName().toLowerCase().endsWith(".gif")) {
             throw new IllegalArgumentException("Not a .gif file: " + file);

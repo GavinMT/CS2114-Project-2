@@ -1,7 +1,7 @@
 package com.group58.slideshowplayer.slideshow;
 
-import com.group58.slideshowplayer.MediaPlaylist;
-import com.group58.slideshowplayer.media.SlideshowMedia;
+import com.group58.slideshowplayer.Playlist;
+import com.group58.slideshowplayer.media.Media;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
@@ -27,7 +27,7 @@ import javafx.util.Duration;
 public class SlideshowPlayer {
     private static final Duration IDLE_DELAY = Duration.seconds(3);
 
-    private final MediaPlaylist playlist;
+    private final Playlist playlist;
     private final StackPane root;
     private final StackPane mediaPane;
     private final HBox controls;
@@ -35,11 +35,11 @@ public class SlideshowPlayer {
     private final Button muteButton;
     private final PauseTransition idleTimer;
     private final FadeTransition fadeOut;
-    private SlideshowMedia current;
+    private Media current;
     private boolean playing;
     private boolean muted = true;
 
-    public SlideshowPlayer(MediaPlaylist playlist, Runnable onHome) {
+    public SlideshowPlayer(Playlist playlist, Runnable onHome) {
         if (playlist == null || playlist.isEmpty()) {
             throw new IllegalArgumentException("Playlist must have media to play");
         }
@@ -153,7 +153,7 @@ public class SlideshowPlayer {
         release();
     }
 
-    private void show(SlideshowMedia media) {
+    private void show(Media media) {
         release();
         current = media;
         media.setMuted(muted);

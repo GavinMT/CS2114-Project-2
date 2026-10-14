@@ -3,27 +3,26 @@ package com.group58.slideshowplayer.media;
 import java.io.File;
 
 import javafx.scene.Node;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 
-public class VideoMedia extends SlideshowMedia {
+public class Video extends Media {
     private MediaPlayer player;
     private MediaView view;
     private boolean muted = true;
 
-    public VideoMedia(String name, String date, File file) {
+    public Video(String name, String date, File file) {
         this(name, date, file, Duration.INDEFINITE);
     }
 
-    public VideoMedia(String name, String date, File file, Duration duration) {
+    public Video(String name, String date, File file, Duration duration) {
         super(name, date, file, duration);
     }
 
     private MediaPlayer getPlayer() {
         if (player == null) {
-            player = new MediaPlayer(new Media(getFile().toURI().toString()));
+            player = new MediaPlayer(new javafx.scene.media.Media(getFile().toURI().toString()));
             if (!getDuration().isIndefinite()) {
                 player.setStopTime(getDuration());
             }

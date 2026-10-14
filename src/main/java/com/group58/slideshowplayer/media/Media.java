@@ -7,7 +7,7 @@ import com.group58.slideshowplayer.LinkedChain;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
-public abstract class SlideshowMedia {
+public abstract class Media {
     private String name;
     private String date;
     private final LinkedChain<String> tags;
@@ -15,7 +15,7 @@ public abstract class SlideshowMedia {
     private final Duration duration;
     private Runnable onFinished;
 
-    public SlideshowMedia(String name, String date, File file, Duration duration) {
+    public Media(String name, String date, File file, Duration duration) {
         if (file == null) {
             throw new IllegalArgumentException("File cannot be null.");
         }
