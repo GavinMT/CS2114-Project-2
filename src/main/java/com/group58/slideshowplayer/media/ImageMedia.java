@@ -1,4 +1,44 @@
 package com.group58.slideshowplayer.media;
 
-public class ImageMedia {
+import java.io.File;
+
+import javafx.animation.PauseTransition;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.util.Duration;
+
+public class ImageMedia extends SlideshowMedia {
+    private final PauseTransition timer;
+    private ImageView view;
+
+    public ImageMedia(String name, String date, File file, Duration duration) {
+        super(name, date, file, duration);
+        timer = new PauseTransition(duration);
+        timer.setOnFinished(event -> finished());
+    }
+
+    @Override
+    public Node getView() {
+        if (view == null) {
+            view = new ImageView(new Image(getFile().toURI().toString()));
+            view.setPreserveRatio(true);
+        }
+        return view;
+    }
+
+    @Override
+    public void play() {
+        timer.play();
+    }
+
+    @Override
+    public void pause() {
+        timer.pause();
+    }
+
+    @Override
+    public void stop() {
+        timer.stop();
+    }
 }
