@@ -35,20 +35,31 @@ Supported media: PNG, JPG, BMP and GIF images, and MP4 (H.264) videos.
   What new tests will you need? The methods and bad-input cases the added work must cover.\
   ->For implementing GUI, I don't think additional tests are needed. But for the swap function, the new test will be needed. The normal case would be swapping the order of existing files, and the bad case would be rejecting invalid input such as the indicating the file that is out of index.\
   Who does what? Which team member owns each remaining item.\
-  ->Sieon would implement swap() method. GUI function would be implemented by Gavin.
+  ->Sieon would implement swap() method. GUI function will be implemented by Gavin.
 # Attribution:
-| classes | who worked on the actual code | who worked on the test class |
-|------|------|------|
-| Gif | Luis |  |
-| Image | Luis |  |
-| Media | Sieon |  |
-| Video | Luis |  |
-| SlideshowApp | Luis |  |
-| SlideshowPlayer | Luis |  |
-| SlideshowScene | Luis |  |
-| LinkedChain |  |  |
-| Playlist | Luis |  |
-| PlaylistStorage | Luis |  |
-| User | Luis |  |
-# GenAI Notice: \
-We used GenAI to impletment JavaGUI. When building the slideshow classes and test classes, we got an assistance from GenAI. We mainly planned with our own logic and let GenAI to review our logic to check whether the overall structure would work. The overall logic was reviewed by GenAI and fixed.
+## Classes
+| classes | who worked on the actual code |
+|------|------|
+| Gif | Luis | 
+| Image | Luis | 
+| Media | Sieon | 
+| Video | Luis |  
+| SlideshowApp | Luis (w/ GenAI)|  
+| SlideshowPlayer | Luis (w/ GenAI) |  
+| SlideshowScene | Luis (w/ GenAI)|  
+| LinkedChain |  |  
+| Playlist | Luis |  
+| PlaylistStorage | Luis |  
+| User | Luis |  
+
+## Test Classes
+| classes | who worked on the actual code |
+|------|------|
+| FxTestHelper | GenAI | 
+| PlaylistStorageTest | Sieon (w/ GenAI) | 
+| PlaylistTest | Sieon (w/ GenAI) | 
+| StubMedia | GenAI |  
+| UserTest | Sieon (w/ GenAI) |  
+
+# GenAI Notice: 
+We used GenAI to deal with JavaGUI and importing files. When building the slideshow classes and test classes, we got an assistance from GenAI. We mainly planned with our own logic and let GenAI to review our logic to check whether the overall structure would work. The overall logic was reviewed by GenAI and fixed. 
