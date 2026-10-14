@@ -30,11 +30,11 @@ Supported media: PNG, JPG, BMP and GIF images, and MP4 (H.264) videos.
 # Next steps:
   What is left to finish the MVP? The remaining features and fixes, in the order you will do them.\
   ->We should implement swap function. Some of the function such as sort are implemented in the backend but not in Java GUI, so they should be implemented in JavaGUI \
-  ##Which stretch goals will you attempt? The ones from your scope you are committing to, and the ones you are dropping.\
+  Which stretch goals will you attempt? The ones from your scope you are committing to, and the ones you are dropping.\
   ->JavaGUI is implemented. Sort function is also implemented but not in GUI, so it should be fixed. Importing the file is implemented. However, exporting the data and adding additional parameters and metadata(color, date, etc) to sort through should be dropped.\
-  ##What new tests will you need? The methods and bad-input cases the added work must cover.\
+  What new tests will you need? The methods and bad-input cases the added work must cover.\
   ->For implementing GUI, I don't think additional tests are needed. But for the swap function, the new test will be needed. The normal case would be swapping the order of existing files, and the bad case would be rejecting invalid input such as the indicating the file that is out of index.\
-  ##Who does what? Which team member owns each remaining item.\
+  Who does what? Which team member owns each remaining item.\
   ->Sieon would implement swap() method. GUI function would be implemented by Gavin.
 # Attribution:
 | classes | who worked on the actual code | who worked on the test class |
