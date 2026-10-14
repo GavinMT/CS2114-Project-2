@@ -17,13 +17,10 @@ Run these from the project root:
 Supported media: PNG, JPG, BMP and GIF images, and MP4 (H.264) videos.
 
 #  Reflection:
-What changed from your specification? Classes, method signatures, where validation lives, test cases — what did the spec say, what did you build instead, and why?\
-  ### Class:
-  User, SlideshowApp, SlideshowScenes, and PlaylistStorage classes are added.\
-  ### Timer:
-  In the spec, SlideshowPlayer had a timer, but the timer function was moved to each media class. An image ends playing after a set time, and a video ends playing when the video ends.\
-  ### Method:
-  The method draw() in the spec was became getView(), and play(), pause(), and stop() were added to the media class. The method helping skipping forward and backward moved to the Playlist class from the SlideshowPlayer class.\
+  What changed from your specification? Classes, method signatures, where validation lives, test cases — what did the spec say, what did you build instead, and why?\
+  Class: User, SlideshowApp, SlideshowScenes, and PlaylistStorage classes are added.\
+  Timer: In the spec, SlideshowPlayer had a timer, but the timer function was moved to each media class. An image ends playing after a set time, and a video ends playing when the video ends.\
+  Method: The method draw() in the spec was became getView(), and play(), pause(), and stop() were added to the media class. The method helping skipping forward and backward moved to the Playlist class from the SlideshowPlayer class.\
   What changed in the LinkedChain? Anything you added to or modified in the provided class and why your application needed it, or that you used it unchanged.\
   -> Nothing changed in the LinkedChain.\
   What happened to your unknowns? Of the things you listed in your scope as not knowing how to do, which did you figure out, and which are still open?\
