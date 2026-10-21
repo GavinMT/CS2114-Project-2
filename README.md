@@ -16,6 +16,10 @@ Run these from the project root:
 
 Supported media: PNG, JPG, BMP and GIF images, and MP4 (H.264) videos.
 
+# System Diagram
+
+![System Architecture](<./src/CS project 2 system diagram.png>)
+
 #  Reflection:
  ### What changed from your specification? Classes, method signatures, where validation lives, test cases — what did the spec say, what did you build instead, and why?
   Class: User, SlideshowApp, SlideshowScenes, and PlaylistStorage classes are added.\
