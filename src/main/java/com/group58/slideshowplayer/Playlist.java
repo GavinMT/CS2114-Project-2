@@ -172,6 +172,35 @@ public class Playlist {
         }
     }
 
+    public void swap(int index1, int index2) {
+        if (index1 < 0 || index1 >= media.size() || index2 < 0 || index2 >= media.size()) {
+            throw new IndexOutOfBoundsException(
+                "Index out of bounds for size " + media.size());
+        }
+        if (index1 == index2) {
+            return;
+        }
+
+        Media[] items = new Media[media.size()];
+        media.toArray(items);
+
+        Media temp = items[index1];
+        items[index1] = items[index2];
+        items[index2] = temp;
+
+        media.clear();
+        for (int i = items.length - 1; i >= 0; i--) {
+            media.add(items[i]);
+        }
+
+        if (currentIndex == index1) {
+            currentIndex = index2;
+        } 
+        else if (currentIndex == index2) {
+            currentIndex = index1;
+        }
+    }  
+
     public Media[] toArray() {
         return media.toArray(new Media[media.size()]);
     }
